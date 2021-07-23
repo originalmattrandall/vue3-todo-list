@@ -41,7 +41,7 @@ export default {
 </script>
 
 <style scoped>
-    .completed{
-        text-decoration: line-through;
-    }
+.completed{
+    text-decoration: line-through;
+}
 </style>
