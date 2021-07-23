@@ -1,15 +1,45 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <NewToDoForm @onFormSubmit="AddNewtask" />
+  <ToDoList 
+  :todoTasks="taskList" 
+  @deleteTask="deleteTodoTask"
+  @completeTask="completeToDoTask" />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import NewToDoForm from './components/NewToDoForm'
+import ToDoList from './components/ToDoList'
+import { ref } from 'vue'
 
 export default {
-  name: 'App',
   components: {
-    HelloWorld
+    NewToDoForm,
+    ToDoList
+  },
+  setup(){
+    let taskList = ref([])
+
+    const AddNewtask = (event) => {
+      taskList.value.push({
+          content: event,
+          complete: false
+        })
+    }
+
+    const completeToDoTask = (index) => {
+      taskList.value[index].completed = !taskList.value[index].completed
+    }
+
+    const deleteTodoTask = (index) => {
+      taskList.value.splice(index, 1)
+    }
+
+    return{
+      AddNewtask,
+      completeToDoTask,
+      deleteTodoTask,
+      taskList,
+    }
   }
 }
 </script>
