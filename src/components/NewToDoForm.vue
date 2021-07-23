@@ -10,7 +10,6 @@
 import { ref } from 'vue'
 
 export default {
-    emits: ['onFormSubmit'],
     setup (props, context) {
         const userInput = ref('')
 
