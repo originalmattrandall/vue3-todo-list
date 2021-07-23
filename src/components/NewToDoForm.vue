@@ -14,6 +14,7 @@ export default {
         const userInput = ref('')
 
         const handleFormSubmit = () => {
+            if(!userInput.value) return
             context.emit('onFormSubmit', userInput.value)
             userInput.value = ''
         }
